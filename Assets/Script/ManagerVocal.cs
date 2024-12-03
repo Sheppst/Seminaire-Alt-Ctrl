@@ -1,4 +1,3 @@
-using NUnit.Framework.Internal;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +5,6 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem.iOS;
 using UnityEngine.Windows.Speech;
 
 public class ManagerVocal : MonoBehaviour
@@ -20,6 +18,7 @@ public class ManagerVocal : MonoBehaviour
 
     [Header("UI")]
     public TextMeshProUGUI text;
+    public string a;
 
 
     private void Awake()
@@ -47,7 +46,7 @@ public class ManagerVocal : MonoBehaviour
 
     private void Hello()
     {
-        StartCoroutine(AppearText("Bonjour !"));
+        StartCoroutine(AppearText("Bonjour !" + a));
     }
 
     private void HowAreU()
@@ -76,7 +75,7 @@ public class ManagerVocal : MonoBehaviour
         string currenttext = "";
         for (int i = 0; i < fulltext.Length; i++)
         {
-            currenttext = fulltext.Substring(0,i+1);
+            currenttext = fulltext.Substring(0, i + 1);
             text.text = currenttext;
             yield return new WaitForSeconds(delay);
         }
