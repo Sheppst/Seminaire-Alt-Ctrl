@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0e1f301a949724faee6dad6a1f4b6d, type: 3}
+  m_Name: Chevalier
+  m_EditorClassIdentifier: 
+  sprt: {fileID: 0}
+  Description: 
+  id: 0
+  PV: 30
+  ClassName: Chevalier
+  SpecialAccess: 
+  ClasseSkills:
+  - {fileID: 11400000, guid: 8380c0f47f2076b409daa673f026cea2, type: 2}
+  - {fileID: 11400000, guid: f92007bd22adbb64c8b5c4a251e1bdc2, type: 2}
+  - {fileID: 11400000, guid: 2777a65d6c10f0a478cb5594ad24bad9, type: 2}
