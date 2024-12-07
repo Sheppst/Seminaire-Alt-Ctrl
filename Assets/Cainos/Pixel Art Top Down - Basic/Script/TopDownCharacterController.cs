@@ -7,10 +7,12 @@ namespace Cainos.PixelArtTopDown_Basic
         public float speed;
         bool StopMovement;
         private Animator animator;
+        Rigidbody2D rb;
         public Vector2 dir = Vector2.zero;
         private void Start()
         {
             animator = GetComponent<Animator>();
+            rb = GetComponent<Rigidbody2D>();
         }
 
 
@@ -94,5 +96,9 @@ namespace Cainos.PixelArtTopDown_Basic
         //private void FixedUpdate()
         //{
         //}
+        private void OnDisable()
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
     }
 }

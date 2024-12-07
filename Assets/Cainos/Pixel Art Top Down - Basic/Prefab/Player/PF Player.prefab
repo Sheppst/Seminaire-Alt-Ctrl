@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   V: {fileID: 0}
-  Class: {fileID: 11400000, guid: c1534a0499d1bd64283a91788c7ab298, type: 2}
+  Class: {fileID: 0}
   PV: 0
   Monster: {fileID: 0}
   SkillsUsed: {fileID: 11400000, guid: c6da7aa0fe4a80c43ae8b4feca6d6799, type: 2}

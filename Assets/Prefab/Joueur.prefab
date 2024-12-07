@@ -45,10 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a33bdd00500d49419fc0714fb561a91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  V: {fileID: 0}
+  Class: {fileID: 0}
   PV: 0
   Monster: {fileID: 0}
-  Class: {fileID: 0}
-  SkillsUsed: {fileID: 0}
+  SkillsUsed: {fileID: 11400000, guid: c6da7aa0fe4a80c43ae8b4feca6d6799, type: 2}
   PlayerFText: {fileID: 0}
 --- !u!114 &1671593196235181488
 MonoBehaviour:
@@ -62,5 +63,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e330ec361d359a048b56c826b6ab7ce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VocalCommand: []
   PlayerWText: {fileID: 0}

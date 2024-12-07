@@ -36,7 +36,7 @@ public class PlayerFight : MonoBehaviour
     public MonsterScript Monster;
     [HideInInspector] public InGameSkills SkillsUsed;
     public TextMeshPro PlayerFText;
-    public TopDownCharacterController PM;
+    TopDownCharacterController PM;
     PlayerManager PMA;
     private void Start()
     {
