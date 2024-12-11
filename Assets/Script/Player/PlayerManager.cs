@@ -1,7 +1,5 @@
 using Cainos.PixelArtTopDown_Basic;
 using System.Collections;
-using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -38,16 +36,9 @@ public class PlayerManager : MonoBehaviour
             Transform t = i.transform;
             Vector3 target1 = (transform.position - t.position).normalized * 5;
             Vector3 target2 = (collision.transform.position - t.position).normalized * 5;
-            if (Input.GetAxisRaw("Horizontal") != 0 && Input.GetAxisRaw("Vertical") == 0)
-            {
                 target1.y = 0;
                 target2.y = 0;
-            }
-            else if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") != 0)
-            {
-                target1.x = 0;
-                target2.x = 0;
-            }
+            
             target1.z = 0;
             target2.z = 0;
             transform.position += target1;

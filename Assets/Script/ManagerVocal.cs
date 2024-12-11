@@ -1,4 +1,3 @@
-using NUnit.Framework.Internal;
 using UnityEngine;
 using System;
 using System.Collections;
@@ -40,22 +39,22 @@ public class ManagerVocal : MonoBehaviour
         //keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
         //keywordRecognizer.OnPhraseRecognized += DebugRecognizedSpeech;
         //keywordRecognizer.Start();
-        print("a");
+        //print("a");
     }
 
     private void OnEnable()
     {
         PlayerFight PF = Player.GetComponent<PlayerFight>();
-        InGameClass C = PF.Class;
+        InGameClass C = Player.GetComponent<PlayerFight>().Class;
 
         int i = 0;
         //actions.Add(listStringActions[0], Hello);
         //actions.Add(listStringActions[1], HowAreU);
         //actions.Add(listStringActions[2], WhoAreU);
         //actions.Add(listStringActions[3], WhatAreWeDoing);
-        //
         //keywordRecognizer = new KeywordRecognizer(actions.Keys.ToArray());
         //keywordRecognizer.OnPhraseRecognized += DebugRecognizedSpeech;
+        
         PlayerActions.Add(i < C.ClasseSkills.Length ? C.ClasseSkills[i++].ActivationSentence : UnityEngine.Random.Range(0, 1000000000).ToString(), PF.Skill1);
         PlayerActions.Add(i < C.ClasseSkills.Length ? C.ClasseSkills[i++].ActivationSentence : UnityEngine.Random.Range(0, 1000000000).ToString(), PF.Skill2);
         PlayerActions.Add(i < C.ClasseSkills.Length ? C.ClasseSkills[i++].ActivationSentence : UnityEngine.Random.Range(0, 1000000000).ToString(), PF.Skill3);

@@ -245,17 +245,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2055102311959635375, guid: 0505844a909d2ea4996c19b67b2a40b9, type: 3}
   m_PrefabInstance: {fileID: 1379950024}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &21710641 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5058786251607562495, guid: 964343a53bc243b41a416efb0ee519ec, type: 3}
-  m_PrefabInstance: {fileID: 4516659903447410957}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83932d338065d2b41bfa2876cf40d0a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &27539729 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2055102311959635375, guid: 9fb66d8c9d3b5194a82e9eed65a54afb, type: 3}
@@ -11861,6 +11850,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1527857381}
     - target: {fileID: 200205187269616115, guid: ef67ba864d1ecc042b5f4cf48455c0a6, type: 3}
+      propertyPath: DTB
+      value: 
+      objectReference: {fileID: 1527857385}
+    - target: {fileID: 200205187269616115, guid: ef67ba864d1ecc042b5f4cf48455c0a6, type: 3}
       propertyPath: PlayerFText
       value: 
       objectReference: {fileID: 781663787}
@@ -14158,6 +14151,7 @@ GameObject:
   - component: {fileID: 1527857381}
   - component: {fileID: 1527857383}
   - component: {fileID: 1527857384}
+  - component: {fileID: 1527857385}
   m_Layer: 0
   m_Name: ManagerVocal
   m_TagString: Untagged
@@ -14177,7 +14171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b142bf566a53a484a85fb3037abb59ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1845861196}
+  Player: {fileID: 1128233857}
   MonstScript: {fileID: 0}
   DestroyedLoad: {fileID: 0}
   listStringActions:
@@ -14238,6 +14232,20 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c1534a0499d1bd64283a91788c7ab298, type: 2}
   Text: {fileID: 1919488432}
   PText: {fileID: 781663787}
+--- !u!114 &1527857385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527857380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8c11f234d765ff45b56dcf6ee37fc45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PF: {fileID: 1128233858}
+  TurnFinish: 0
 --- !u!1 &1533486954
 GameObject:
   m_ObjectHideFlags: 0
@@ -45079,11 +45087,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1845861196 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3740228816395515671, guid: aa9f73a638ea3ec41bdb31336f37acc7, type: 3}
-  m_PrefabInstance: {fileID: 1996494389134959582}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1849971111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45859,7 +45862,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: "Alors, le projet est pas du tout fini, ce que j'ai pu faire pour l'instant
+    c'est que tu peux dire soit \"Caillou Man\", \"Chevalier\" ou \"Mage\" pour obtenir
+    la classe corespondante, les attaques des diff\xE9rentes classes sont : \nCaillou
+    Man : \"Roule\", \"Caillou\"\nChevalier  : \"RAGE\", \"Slash\", \"Bloque\"\nMage
+    : \" GROSSE GROSSE GROSSE BOULE DE FEU\", \"zap\", \"Protection Magique\"\nJ'ai
+    rencontr\xE9 trop de probl\xE8mes et je n'ai pas pu finir dans les temps j'esp\xE8re
+    que tu verra \xE0 peu pr\xE8s o\xF9 \xE7a partait et que le concept obligatoire
+    aurait techniquement \xE9t\xE9 respect\xE9 (ZQSD pour se d\xE9placer)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
@@ -46926,75 +46936,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!1001 &1996494389134959582
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 517682003990516706, guid: aa9f73a638ea3ec41bdb31336f37acc7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -28.39
-      objectReference: {fileID: 0}
-    - target: {fileID: 517682003990516706, guid: aa9f73a638ea3ec41bdb31336f37acc7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 517682003990516706, guid: aa9f73a638ea3ec41bdb31336f37acc7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -6.9377923
-      objectReference: {fileID: 0}
-    - target: {fileID: 517682003990516706, guid: aa9f73a638ea3ec41bdb31336f37acc7, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 517682003990516706, guid: aa9f73a638ea3ec41bdb31336f37acc7, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 517682003990516706, guid: aa9f73a638ea3ec41bdb31336f37acc7, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 517682003990516706, guid: aa9f73a638ea3ec41bdb31336f37acc7, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 517682003990516706, guid: aa9f73a638ea3ec41bdb31336f37acc7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 517682003990516706, guid: aa9f73a638ea3ec41bdb31336f37acc7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 517682003990516706, guid: aa9f73a638ea3ec41bdb31336f37acc7, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3740228816395515671, guid: aa9f73a638ea3ec41bdb31336f37acc7, type: 3}
-      propertyPath: m_Name
-      value: Joueur
-      objectReference: {fileID: 0}
-    - target: {fileID: 3740228816395515671, guid: aa9f73a638ea3ec41bdb31336f37acc7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5447815022059024218, guid: aa9f73a638ea3ec41bdb31336f37acc7, type: 3}
-      propertyPath: V
-      value: 
-      objectReference: {fileID: 1527857381}
-    - target: {fileID: 5447815022059024218, guid: aa9f73a638ea3ec41bdb31336f37acc7, type: 3}
-      propertyPath: Monster
-      value: 
-      objectReference: {fileID: 21710641}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: aa9f73a638ea3ec41bdb31336f37acc7, type: 3}
 --- !u!1001 &4516659903447410957
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47008,8 +46949,20 @@ PrefabInstance:
       value: Monster
       objectReference: {fileID: 0}
     - target: {fileID: 144850750825363420, guid: 964343a53bc243b41a416efb0ee519ec, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 144850750825363420, guid: 964343a53bc243b41a416efb0ee519ec, type: 3}
       propertyPath: m_TagString
       value: Monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317641332626453674, guid: 964343a53bc243b41a416efb0ee519ec, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3317641332626453674, guid: 964343a53bc243b41a416efb0ee519ec, type: 3}
+      propertyPath: AttackTime
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4698693083135977116, guid: 964343a53bc243b41a416efb0ee519ec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -47055,6 +47008,10 @@ PrefabInstance:
       propertyPath: V
       value: 
       objectReference: {fileID: 1527857381}
+    - target: {fileID: 5058786251607562495, guid: 964343a53bc243b41a416efb0ee519ec, type: 3}
+      propertyPath: DTB
+      value: 
+      objectReference: {fileID: 1527857385}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -47070,7 +47027,6 @@ SceneRoots:
   - {fileID: 1527857382}
   - {fileID: 1199962853}
   - {fileID: 1433779189}
-  - {fileID: 1996494389134959582}
   - {fileID: 4516659903447410957}
   - {fileID: 628189448}
   - {fileID: 1244080209}

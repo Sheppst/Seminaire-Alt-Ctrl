@@ -1,4 +1,3 @@
-using UnityEditor.Animations;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewMonster", menuName = "Scriptable Objects/Monsters")]
@@ -10,7 +9,5 @@ public class InGameMonster : ScriptableObject
     public string BaseName;
     public InGameSkills[] Skills;
     [Header("UI")]
-    public AnimatorController Ctrl;
-    public Sprite sprt;
     public string Description;
 }

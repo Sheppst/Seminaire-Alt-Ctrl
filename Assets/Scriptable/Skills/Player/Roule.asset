@@ -16,6 +16,6 @@ MonoBehaviour:
   Damage: 1
   delay: 0
   ActivationSentence: Roule
-  Special: up1
+  Special: 1UP
   sprt: {fileID: 0}
   Description: 

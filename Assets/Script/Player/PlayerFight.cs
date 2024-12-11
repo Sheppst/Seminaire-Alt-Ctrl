@@ -2,21 +2,20 @@ using Cainos.PixelArtTopDown_Basic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
-using UnityEditor;
-using UnityEditor.PackageManager;
 using UnityEngine;
-using UnityEngine.Windows.Speech;
 
 public class PlayerFight : MonoBehaviour
 {
     List<string> VocalCommand;
     [SerializeField] ManagerVocal V;
+    [SerializeField] DuelTurnBehavior DTB;
     Dictionary<string, Action> actions = new Dictionary<string, Action>();
     bool Heal;
     bool Block;
+    bool AT;
     int id;
+    int DamageEncounter;
     int Dash;
     int BlockD;
     int Bonus;
@@ -32,7 +31,7 @@ public class PlayerFight : MonoBehaviour
     InGameSkills[] Skills;
 
     public InGameClass Class;
-    [HideInInspector] public int PV;
+    public int PV {  get; private set; }
     public MonsterScript Monster;
     [HideInInspector] public InGameSkills SkillsUsed;
     public TextMeshPro PlayerFText;
@@ -51,10 +50,8 @@ public class PlayerFight : MonoBehaviour
 
     private void Update()
     {
-        if (Monster == null)
-        {
-
-        }
+        AT = DTB.AuthorizedTurn;
+        DamageEncounter = DTB.PlayerDamage;
         SubDelay = StaticFloat.instance.DelaySubtext;
         if (Class && Name != Class.ClassName) 
         {
@@ -65,13 +62,25 @@ public class PlayerFight : MonoBehaviour
                 Skills[i] = Class.ClasseSkills[i];
             }
             PV = Class.PV;
-            if (Class.sprt)
-                GetComponent<SpriteRenderer>().sprite = Class.sprt;
-            if (Class.Ctrl)
-                GetComponent<Animator>().runtimeAnimatorController = Class.Ctrl;
             V.enabled = true;
         }
-        GoToSkill();
+        if (!SkillsUsed && id <= Skills.Length - 1)
+            GoToSkill();
+        if (AT)
+        {
+            if (Block)
+                DamageBlock(BlockDamageCount, BlockDelayCount);
+            if (Dash != 0)
+                DamageDash(DashCount, DashDelayCount);
+            if (Bonus != 0)
+                DamageBonus(Bonus, BonusDelayCount);
+            if (Heal)
+                DamageHealt(HealtDamageCount, HealDelayCount);
+        }
+        
+
+        ActionOn();
+        /*GoToSkill();
         if (Block)
             DamageBlock(BlockDamageCount, BlockDelayCount);
         if (Dash != 0)
@@ -81,42 +90,127 @@ public class PlayerFight : MonoBehaviour
         if (Heal)
             DamageHealt(HealtDamageCount, HealDelayCount);
 
-        ActionOn();
+        ActionOn();*/
     }
 
     void GoToSkill()
     {
-        if (id > Skills.Length - 1)
+        if (!(Skills[id].ID == 0))
+        {
+            SkillsUsed = Skills[id];
+        }
+        id = Skills.Length + 1;
+
+        /*if (id > Skills.Length - 1)
         {
             SkillsUsed = null;
             return;
         }
+        else if (Skills[id].ID == 0)
+        {
+            Monster.SkillsUsed = Skills[id];
+        }
+        else
+        {
+            SkillsUsed = Skills[id];
+        }
+        id = Skills.Length + 1;*/
+
         //Va selectionner la compétence et l'exécuter 
-        Monster.SkillsUsed = Skills[id];
-        id = Skills.Length + 1;
     }
 
     public void Skill1()
     {
         id = 0;
         StartCoroutine(AppearText(Skills[id].name));
+        print(Skills[0].name);
     }
     public void Skill2()
     {
         id = 1;
         StartCoroutine(AppearText(Skills[id].name));
+        print(Skills[1].name);
     }
     public void Skill3()
     {
         id = 2;
         StartCoroutine(AppearText(Skills[id].name));
+        print(Skills[2].name);
+    }
+    public void DamageDealt(int Damage)
+    {
+        if (Damage == 0)
+            return;
+        if (Dash != 0)
+        {
+            Dash--;
+            return;
+        }
+        if (BlockD != 0)
+        {
+            Damage -= BlockD;
+            Mathf.Clamp(Damage, 0, Mathf.Infinity);
+        }
+
+        PV -= Damage;
     }
 
-    public void DamageDealt(int Damage)
+    public void DamageBlock(int Damage, float Turn = 0)
+    {
+        Block = true;
+        if (Turn >= 0)
+        {
+            if (Damage == 0)
+                BlockD = 50000 * PV;
+            else
+                BlockD = Damage;
+            BlockDelayCount--;
+        }
+        else if (Turn < 0)
+        {
+            Block = false;
+        }
+    }
+
+    public void DamageBonus(int Damage, float Turn = 0)
+    {
+        Bonus = Damage;
+        if (Turn < 0)
+        {
+            Bonus = 0;
+        }
+        BonusDelayCount--;
+    }
+
+    public void DamageHealt(int Damage, float Turn = 0)
+    {
+        Heal = true;
+        if (Turn > 0)
+        {
+            PV += Damage;
+            HealDelayCount--;
+        }
+        if (Turn < 0)
+        {
+            Heal = false;
+        }
+    }
+    public void DamageDash(int Number, float Turn = 0)
+    {
+        Dash = Number;
+        if (Turn < 0)
+        {
+            Dash = 0;
+        }
+        DashDelayCount--;
+    }
+/*    public void DamageDealt(int Damage)
     {
         if (Dash != 0)
         {
             Dash --;
+            if (SkillsUsed && SkillsUsed.ID == 0)
+                SkillsUsed = null;
             return;
         }
         if (BlockD != 0)
@@ -130,6 +224,8 @@ public class PlayerFight : MonoBehaviour
         }
 
         PV -= Damage;
+        if (SkillsUsed && SkillsUsed.ID == 0)
+            SkillsUsed = null;
     }
 
     public void DamageBlock(int Damage, float Delay = 0)
@@ -147,6 +243,8 @@ public class PlayerFight : MonoBehaviour
         {
             Block = false;
         }
+        if (SkillsUsed && SkillsUsed.ID == 1)
+            SkillsUsed = null;
     }
 
     public void DamageBonus(int Damage, float Delay = 0)
@@ -157,6 +255,8 @@ public class PlayerFight : MonoBehaviour
             Bonus = 0;
         }
         BonusDelayCount = Delay - Time.deltaTime;
+        if (SkillsUsed && SkillsUsed.ID == 2)
+            SkillsUsed = null;
     }
 
     public void DamageHealt(int Damage, float Delay = 0)
@@ -171,6 +271,8 @@ public class PlayerFight : MonoBehaviour
         {
             Heal = false;
         }
+        if (SkillsUsed && SkillsUsed.ID == 3)
+            SkillsUsed = null;
     }
     public void DamageDash(int Number, float Delay = 0)
     {
@@ -180,21 +282,24 @@ public class PlayerFight : MonoBehaviour
             Dash = 0;
         }
         DashDelayCount = Delay - Time.deltaTime;
-    }
+        if (SkillsUsed && SkillsUsed.ID == 4)
+            SkillsUsed = null;
+    }*/
 
     void ActionOn()
     {
-        if (!SkillsUsed)
+        DamageDealt(DamageEncounter);
+        /*if (!SkillsUsed)
             return;
-        if (SkillsUsed.ID == 0)
-            DamageDealt(SkillsUsed.Damage);
+        else if (SkillsUsed.ID == 0)
+            DamageDealt(SkillsUsed.Damage);*/
         if (SkillsUsed.ID == 1)
             DamageBlock(SkillsUsed.Damage, SkillsUsed.delay);
-        if (SkillsUsed.ID == 2)
+        else if (SkillsUsed.ID == 2)
             DamageBonus(SkillsUsed.Damage, SkillsUsed.delay);
-        if (SkillsUsed.ID == 3)
+        else if (SkillsUsed.ID == 3)
             DamageHealt(SkillsUsed.Damage, SkillsUsed.delay);
-        if (SkillsUsed.ID == 4)
+        else if (SkillsUsed.ID == 4)
             DamageDash(SkillsUsed.Damage, SkillsUsed.delay);
     }
     public IEnumerator AppearText(string fulltext)

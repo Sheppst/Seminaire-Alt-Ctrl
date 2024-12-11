@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: 0
   Damage: 15
   delay: 0
-  ActivationSentence: 'GROSSE GROSSE GROSSE BOULE DE FEU '
+  ActivationSentence: GROSSE GROSSE GROSSE BOULE DE FEU
   Special: 
   sprt: {fileID: 0}
   Description: 

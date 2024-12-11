@@ -1,5 +1,4 @@
 using Cainos.PixelArtTopDown_Basic;
-using System;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
@@ -12,6 +11,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public KeywordRecognizer keywordRecognizer;
     [SerializeField] PlayerFight P;
     [SerializeField] TopDownCharacterController PM;
+    PlayerManager PMA;
     public List<string> listStringActions;
     public InGameClass[] Class;
     [HideInInspector] public Dictionary<string, int> actions = new Dictionary<string, int>();
@@ -32,6 +32,11 @@ public class GameManager : MonoBehaviour
         keywordRecognizer.Start();
     }
 
+    private void Start()
+    {
+        PMA = PM.gameObject.GetComponent<PlayerManager>();
+    }
+
     private void Update()
     {
         if (string.IsNullOrEmpty(PText.text) || isPrinting)
@@ -50,7 +55,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log(speech.text);
         ChooseClasse(actions[speech.text]);
-        print(1);
+        //print(1);
     }
 
     private void ChooseClasse(int id)
@@ -58,6 +63,7 @@ public class GameManager : MonoBehaviour
         P.gameObject.GetComponent<SpriteRenderer>().enabled = true;
         P.Class = Class[id];
         PM.enabled = true;
+        PMA.enabled = true;
         keywordRecognizer.Stop();
         enabled = false;
     }

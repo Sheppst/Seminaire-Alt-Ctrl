@@ -57,7 +57,7 @@ namespace Cainos.PixelArtTopDown_Basic
                 GetComponent<Rigidbody2D>().linearVelocity = speed * dir;
 
 
-            print(GetComponent<Rigidbody2D>().linearVelocity);
+            //print(GetComponent<Rigidbody2D>().linearVelocity);
 
 
             if (dir == Vector2.zero)
@@ -98,6 +98,7 @@ namespace Cainos.PixelArtTopDown_Basic
         //}
         private void OnDisable()
         {
+            GetComponent<Animator>().SetInteger("AnimState", 0);
             rb.linearVelocity = Vector2.zero;
         }
     }
